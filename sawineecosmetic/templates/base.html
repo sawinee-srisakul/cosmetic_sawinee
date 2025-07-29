@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Sawinee Cosmetic</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://kit.fontawesome.com/2e7148a792.js" crossorigin="anonymous" defer></script>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+  <header>
+    <nav class="navbar navbar-light bg-light py-3">
+      <div class="container">
+
+        <!-- Top row: Logo + Search -->
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <!-- Logo -->
+          <a class="navbar-brand" href="{{ url_for('main.index') }}">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" style="height: auto; width: 140px;">
+          </a>
+
+          <!-- Search -->
+          <form class="form-inline d-flex w-50 justify-content-end align-items-center" method="GET"
+            action="{{ url_for('main.product_list') }}">
+            <input class="form-control mr-2 w-75" type="search" name="search" placeholder="What are you looking for?"
+              aria-label="Search" value="{{ search_term }}">
+            <button class="btn btn-outline-secondary" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- Bottom row: Navigation links -->
+        <div class="w-100">
+          <ul class="nav text-start text-uppercase font-weight-bold">
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{{ url_for('main.index') }}">
+                <i class="fas fa-home mr-1"></i> Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{{ url_for('main.product_list') }}">
+                <i class="fas fa-th-list mr-1"></i> Categories
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{{ url_for('main.basket') }}">
+                <i class="fas fa-shopping-basket mr-1"></i> Basket
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+
+    {% block head %}{% endblock %}
+  </header>
+
+  <!-- main page content goes in container -->
+
+  <main>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-info mt-3 text-center">
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    {% block main %}{% endblock %}
+  </main>
+
+
+  <footer class="bg-light text-dark pt-3 pb-2 border-top small">
+    <div class="container">
+      <div class="row">
+
+        <!-- Navigation -->
+        <div class="col-md-4 mb-3">
+          <h6 class="font-weight-bold">Navigation</h6>
+          <p class="mb-1">
+            <i class="fas fa-home mr-1"></i>
+            <a href="{{ url_for('main.index') }}" class="text-dark">Home</a>
+          </p>
+          <p class="mb-0">
+            <i class="fas fa-th-list mr-1"></i>
+            <a href="{{ url_for('main.product_list') }}" class="text-dark">Categories</a>
+          </p>
+        </div>
+        <!-- Customer Care -->
+        <div class="col-md-4 mb-3">
+          <h6 class="font-weight-bold">Customer Care</h6>
+          <p class="mb-1">Order Enquiry</p>
+          <p class="mb-0">Delivery</p>
+        </div>
+
+        <!-- Payment Options -->
+        <div class="col-md-4 mb-3">
+          <h6 class="font-weight-bold">Payment Options</h6>
+          <div class="d-flex align-items-center gap-4">
+            <i class="fab fa-cc-visa fa-lg mr-2"></i>
+            <i class="fab fa-cc-mastercard fa-lg mr-2"></i>
+            <i class="fab fa-cc-paypal fa-lg"></i>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-3 border-top pt-2">
+        &copy; {{ current_year if current_year else '2025' }} Sawinee Cosmetic. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

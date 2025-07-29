@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container mt-5">
+  <div class="text-center p-5 shadow rounded bg-light mb-4">
+    <i class="fa-solid fa-circle-check fa-4x text-success mb-3"></i>
+    <h2 class="text-success mb-3">Thank You for Your Purchase!</h2>
+    <p class="lead">Your order has been successfully placed. We're preparing it with care.</p>
+
+    <div class="mt-4 text-start mx-auto" style="max-width: 400px;">
+      <h5 class="mb-3"><i class="fa-solid fa-box-open fa-lg text-warning"></i> Order Summary</h5>
+      <p><strong>Order ID:</strong> {{ order.id }}</p>
+      <p><strong>Name:</strong> {{ order.firstname }} {{ order.surname }}</p>
+      <p><strong>Email:</strong> {{ order.email }}</p>
+      <p><strong>Address:</strong> {{ order.address }}</p>
+      <p><strong>Phone:</strong> {{ order.phone }}</p>
+      <p><strong>Total Cost:</strong> ${{ '%.2f' | format(order.totalcost) }}</p>
+      <p><strong>Date:</strong> {{ order.date.strftime('%Y-%m-%d %H:%M') }}</p>
+    </div>
+
+    <hr class="my-4">
+
+    <p class="text-muted">You'll receive a confirmation email shortly. We'll notify you when your order ships.</p>
+
+    <a href="{{ url_for('main.index') }}" class="btn btn-primary mt-3"><i
+        class="fa-solid fa-bag-shopping fa-lg text-light"></i> Continue Shopping</a>
+  </div>
+</div>
+{% endblock %}

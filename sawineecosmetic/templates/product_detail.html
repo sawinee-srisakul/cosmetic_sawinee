@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container mt-4">
+  <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
+      <img src="{{ url_for('static', filename='img/' + product.image) }}" alt="{{ product.name }}"
+        class="img-fluid mb-3" style="max-width: 300px;">
+    </div>
+    <div>
+      <h2>{{ product.name }}</h2>
+      <p>{{ product.description.replace('\n', '<br>') | safe }}</p>
+
+      <p><strong>Price: ${{ '%.2f' | format(product.price) }}</strong></p>
+    </div>
+  </div>
+
+
+  <!--a href="{{ url_for('main.basket', product_id=product.id) }}" class="btn btn-success">Add to Basket</!--a-->
+  <div class="d-flex justify-content-between">
+    <a href="{{ url_for('main.index') }}" class="btn btn-secondary">Back to Products</a>
+    <form action="{{ url_for('main.basket') }}" method="POST">
+      <input type="hidden" name="product_id" value="{{ product.id }}">
+      <button type="submit" class="btn btn-success">Add to Basket</button>
+    </form>
+  </div>
+
+</div>
+
+{% endblock %}

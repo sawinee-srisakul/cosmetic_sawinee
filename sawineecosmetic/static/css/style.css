@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  flex: 1;
+}
+
+.navbar {
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+}
+
+.navbar,
+.navbar-brand,
+.nav-link {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.navbar .nav-link:hover {
+  color: #bcbcbc;
+}
+
+form.d-flex .form-control {
+  border: 1px solid #6a6464;
+  border-radius: 0.25rem;
+  padding: 0.4rem 0.75rem;
+  color: #2C2C2C;
+}
+
+.banner-img {
+  height: 400px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.checkout-form input.btn {
+  background-color: #198754 !important;
+  color: white;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.help-block {
+  color: red;
+}
+
+.hero-banner {
+  background-image: url('/static/img/banner.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.card.text-decoration-none:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-5px);
+  transition: 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

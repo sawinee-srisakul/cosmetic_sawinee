@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="container mt-4">
+  <h2 class="mb-4">All Products</h2>
+
+  {% if search_term %}
+  {% if products|length > 0 %}
+  <p>Showing results for: <strong>{{ search_term }}</strong></p>
+  <div class="row">
+    {% for product in products %}
+    <div class="col-md-3 mb-4">
+      <div class="card h-100">
+        <img src="{{ url_for('static', filename='img/' + product.image) }}" class="card-img-top"
+          alt="{{ product.name }}">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">
+            <a href="{{ url_for('main.product_detail', product_id=product.id) }}"
+              class="text-dark text-decoration-none">
+              {{ product.name }}
+            </a>
+          </h5>
+          <p class="card-text">${{ '%.2f' | format(product.price) }}</p>
+          <form action="{{ url_for('main.basket') }}" method="POST" class="mt-auto">
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <button type="submit" class="btn btn-success">Add to Basket</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No products found for "<strong>{{ search_term }}</strong>"</p>
+  {% endif %}
+
+  {% else %}
+  {% for category in categories %}
+  <h4 class="mt-5 mb-3">{{ category.name }}</h4>
+  <div class="row">
+    {% for product in category.products %}
+    <div class="col-md-3 mb-4">
+      <div class="card h-100">
+        <img src="{{ url_for('static', filename='img/' + product.image) }}" class="card-img-top"
+          alt="{{ product.name }}">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">
+            <a href="{{ url_for('main.product_detail', product_id=product.id) }}"
+              class="text-dark text-decoration-none">
+              {{ product.name }}
+            </a>
+          </h5>
+          <p class="card-text">${{ '%.2f' | format(product.price) }}</p>
+          <form action="{{ url_for('main.basket') }}" method="POST" class="mt-auto">
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <button type="submit" class="btn btn-success">Add to Basket</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}
